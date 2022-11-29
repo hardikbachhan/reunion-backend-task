@@ -2,20 +2,16 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const JWT_SECRET = process.env.JWT_SECRET;
 
-module.exports.createJWT = async function (req, res) {
+module.exports.createJWT = function (req, res) {
     try {
         // create payload obj
-        const payload = {
-            userDetails: {
-                userId: req.userId,
-            },
-        };
+        const payload = { userId: req.userId };
         // sign jwt token
-        const token = await jwt.sign(payload, JWT_SECRET);
-        // set token in headers and send as response
-        res.set("Authorization", `Bearer ${token}`);
+        const token = jwt.sign(payload, JWT_SECRET);
+        // send token as response
         res.json({ message: "token created sucessfully", token });
     } catch (error) {
         console.log(error.message);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 };

@@ -21,7 +21,8 @@ module.exports.authenticateUser = async function (req, res, next) {
         req.userId = user._id.toString();
         // call createJWT middleware
         next();
-    } catch (error) { 
+    } catch (error) {
         console.log(error.message);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 };
