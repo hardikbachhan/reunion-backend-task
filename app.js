@@ -1,3 +1,7 @@
+// establishing connection to database
+const connectToMongo = require("./db");
+connectToMongo();
+
 const express = require('express');
 
 // create app
