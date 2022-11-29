@@ -9,12 +9,13 @@ const app = express();
 // to read req.body in json
 app.use(express.json())
 
-// add route
-app.get("/", (req, res) => {
-  res.json({
-    message: "home page"
-  });
-});
+// router for user authentication
+const authRouter = require("./routers/authRouter");
+
+
+// user authentication
+app.use("/api/authenticate", authRouter)
+
 
 // use port 3000 unless there exists a preconfigured port
 const port = process.env.PORT || 3000;
