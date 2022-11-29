@@ -2,10 +2,12 @@
 const connectToMongo = require("./db");
 connectToMongo();
 
+// initializing express app
 const express = require('express');
-
-// create app
 const app = express();
+
+// to read req.body in json
+app.use(express.json())
 
 // add route
 app.get("/", (req, res) => {
