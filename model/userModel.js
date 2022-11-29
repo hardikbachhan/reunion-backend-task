@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema(
             default: [],
         },
     },
-    { timeStamps: true }
+    { timestamps: true }
 );
 
 // model creation
@@ -35,8 +35,8 @@ const userModel = mongoose.model("user", userSchema);
 // create new user
 try {
     async function createUser() {
-        let email = "hardik@gmail.com";
-        let password = "hardik123456";
+        let email = "def@gmail.com";
+        let password = "def123456";
         const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(password, salt);
         const userDetails = {
