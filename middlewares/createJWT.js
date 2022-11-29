@@ -11,6 +11,7 @@ module.exports.createJWT = async function(req, res) {
     }
     // sign jwt token
     const token = await jwt.sign(payload, JWT_SECRET);
-    // sent token as response
-    res.json({token});
+    // set token in headers and send as response
+    res.set("Authorization", `Bearer ${token}`);
+    res.json({message: "token created sucessfully", token});
 }
