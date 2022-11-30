@@ -21,6 +21,7 @@ const unFollowRouter = require("./routers/unFollowRouter");
 
 // router for CRUD on posts
 const postRouter = require("./routers/postRouter");
+const allPostsRouter = require("./routers/allPostsRouter");
 
 // router for liking a post
 const postLikeRouter = require("./routers/postLikeRouter");
@@ -43,6 +44,7 @@ app.use("/api/user", userRouter);
 
 // CRUD operations on post
 app.use("/api/posts", postRouter);
+app.use("/api/all_posts", allPostsRouter);
 
 // post operations
 app.use("/api/like", postLikeRouter);
