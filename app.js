@@ -22,6 +22,9 @@ const unFollowRouter = require("./routers/unFollowRouter");
 // router for CRUD on posts
 const postRouter = require("./routers/postRouter");
 
+// router for liking a post
+const postLikeRouter = require("./routers/postLikeRouter");
+
 // user authentication
 app.use("/api/authenticate", authRouter);
 
@@ -34,6 +37,9 @@ app.use("/api/user", userRouter);
 
 // CRUD operations on post
 app.use("/api/posts", postRouter);
+
+// post operations
+app.use("/api/like", postLikeRouter);
 
 // use port 3000 unless there exists a preconfigured port
 const port = process.env.PORT || 3000;
