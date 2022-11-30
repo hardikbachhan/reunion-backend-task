@@ -1,39 +1,39 @@
 const userModel = require("../model/userModel");
 
-module.exports.followUserById = async function (req, res) {
+module.exports.unFollowUserById = async function (req, res) {
     try {
         // retrieve loggedIn user and tobefollowed user id
         const loggedInUserId = req.loggedInUserId;
         const userToBeFollowedId = req.params.id;
 
-        // add loggedin user to tobefolloweduser's followers list if not already present.
+        // remove loggedin user from tobefolloweduser's followers list if present.
         const userToBeFollowed = await userModel.findById(userToBeFollowedId);
     
         if (!userToBeFollowed) {
             return res.status(404).json({ message: "invalid operation - user not found" });
         }
-        if (!userToBeFollowed.followers.includes(loggedInUserId)) {
-            userToBeFollowed.followers.push(loggedInUserId);
+        if (userToBeFollowed.followers.includes(loggedInUserId)) {
+            userToBeFollowed.followers = userToBeFollowed.followers.filter(userId => userId !== loggedInUserId);
         } else {
-            return res.status(400).json({ message: "user already been followed." });
+            return res.status(400).json({ message: "first follow user to unfollow" });
         }
         userToBeFollowed.save();
 
-        // add tobefolloweduser in loggedin user's following list
+        // remove tobefolloweduser in loggedin user's following list
         const userLoggedIn = await userModel.findById(loggedInUserId);
 
         if (!userLoggedIn) {
             return res.status(404).json({ message: "invalid operation - user not found" });
         }
-        if (!userLoggedIn.following.includes(userToBeFollowedId)) {
-            userLoggedIn.following.push(userToBeFollowedId);
+        if (userLoggedIn.following.includes(userToBeFollowedId)) {
+            userLoggedIn.following = userLoggedIn.following.filter(userId => userId !== userToBeFollowedId);
         } else {
-            return res.status(400).json({ message: "user already been followed." });
+            return res.status(400).json({ message: "first follow user to unfollow" });
         }
         userLoggedIn.save();
 
         // send success response
-        res.json({ success: true, message: "user followed successfully" });
+        res.json({ success: true, message: "user unfollowed successfully" });
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: "Internal Server Error" });
