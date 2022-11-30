@@ -4,6 +4,7 @@ const express = require("express");
 app.use(express.json());
 const request = require("supertest");
 
+// ROUTE 1: POST /api/authenticate should perform user authentication and return a JWT token.
 describe("POST /api/authenticate", function () {
     it("should respond with JWT", async function () {
         const payload = {
