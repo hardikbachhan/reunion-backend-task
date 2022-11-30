@@ -10,6 +10,10 @@ module.exports.followUserById = async function (req, res) {
 
         // add loggedin user to tobefolloweduser's followers list if not already present.
         const userToBeFollowed = await userModel.findById(userToBeFollowedId);
+    
+        if (!userToBeFollowed) {
+            return res.status(404).json({ message: "invalid operation - user not found" });
+        }
         if (!userToBeFollowed.followers.includes(loggedInUserId)) {
             userToBeFollowed.followers.push(loggedInUserId);
         } else {
@@ -19,12 +23,18 @@ module.exports.followUserById = async function (req, res) {
 
         // add tobefolloweduser in loggedin user's following list
         const userLoggedIn = await userModel.findById(loggedInUserId);
+
+        if (!userLoggedIn) {
+            return res.status(404).json({ message: "invalid operation - user not found" });
+        }
         if (!userLoggedIn.following.includes(userToBeFollowedId)) {
             userLoggedIn.following.push(userToBeFollowedId);
         } else {
             return res.status(400).json({ message: "user already been followed." });
         }
         userLoggedIn.save();
+
+        // send success response
         res.json({ success: true, message: "user followed successfully" });
     } catch (error) {
         console.log(error.message);
