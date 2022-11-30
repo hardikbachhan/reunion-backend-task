@@ -4,10 +4,14 @@ connectToMongo();
 
 // initializing express app
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 // to read req.body in json
 app.use(express.json());
+
+// enable cors
+app.use(cors());
 
 // router for user authentication
 const authRouter = require("./routers/authRouter");
