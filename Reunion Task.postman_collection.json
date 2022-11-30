@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "ceaa8c59-1c26-41ea-8d27-7928483236be",
+		"name": "Reunion Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18925065"
+	},
+	"item": [
+		{
+			"name": "ROUTE 1: authenticate user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"abhinav@gmail.com\",\r\n    \"password\": \"abhinav123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/authenticate/",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"authenticate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 2: follow another user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NTE2MjdlYmNmOGY5NmU4NzY3Y2UiLCJpYXQiOjE2Njk3NzMzNTV9.ifizdlF0Epfc-7E6fhYY5s59IrtlyAm2bN3eDdahBQM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NDYwOWU2NzFhYmI0MGUyZDBlYjkiLCJpYXQiOjE2Njk3NDUxNDN9.ey_wC5HJQ8MlnLUpGQQ61kkrquOoKaWX9EPAtOTpb8Y",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/follow/6386514be19cfe2999f41583",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"follow",
+						"6386514be19cfe2999f41583"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 3: unfollow followed user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NTE2MjdlYmNmOGY5NmU4NzY3Y2UiLCJpYXQiOjE2Njk3NzMzNTV9.ifizdlF0Epfc-7E6fhYY5s59IrtlyAm2bN3eDdahBQM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/unfollow/6386514be19cfe2999f41583",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"unfollow",
+						"6386514be19cfe2999f41583"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 4: get user using token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NTExODllYjZlZTc1YjgxMzU5NTAiLCJpYXQiOjE2Njk3NzY1Nzh9.eA1iFwYjH2w7RbIAI9kVWubxGplBRPLND7FGR_r6oJQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/user",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 5: create new post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NTE0YmUxOWNmZTI5OTlmNDE1ODMiLCJpYXQiOjE2Njk3ODAyMTl9.W5DBfvluLbVeIVXA4sEJda3DaTA5tow1UpAdMs-WqBo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"abhinav3 - this is post title\", \r\n    \"description\": \"abhinav3 - this is post description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/posts/",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 6: delete post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NTExODllYjZlZTc1YjgxMzU5NTAiLCJpYXQiOjE2Njk3ODIzMDV9.hhpH_heqA77C6bngsYLZQqMiefhBnuY2JtakmqZw3h0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/posts/6386d2caae9ebe083eb7895c",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts",
+						"6386d2caae9ebe083eb7895c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 7: like a post using registered user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NDYwOWU2NzFhYmI0MGUyZDBlYjkiLCJpYXQiOjE2Njk3ODQ5ODh9.xxs_0psFrUQikMLvXduxknE8yn7Zh--aNmt_oRwgEdU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/like/6386d3c7abb583678ae620e1",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"like",
+						"6386d3c7abb583678ae620e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 8: unlike a post using registered user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NDYwOWU2NzFhYmI0MGUyZDBlYjkiLCJpYXQiOjE2Njk3ODQ5ODh9.xxs_0psFrUQikMLvXduxknE8yn7Zh--aNmt_oRwgEdU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/unlike/6386d3c7abb583678ae620e1",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"unlike",
+						"6386d3c7abb583678ae620e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 9: add comment to post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NDYwOWU2NzFhYmI0MGUyZDBlYjkiLCJpYXQiOjE2Njk3ODQ5ODh9.xxs_0psFrUQikMLvXduxknE8yn7Zh--aNmt_oRwgEdU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"this is the third comment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/comment/6386d3c7abb583678ae620e1",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"comment",
+						"6386d3c7abb583678ae620e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 10: get a post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NDYwOWU2NzFhYmI0MGUyZDBlYjkiLCJpYXQiOjE2Njk3ODQ5ODh9.xxs_0psFrUQikMLvXduxknE8yn7Zh--aNmt_oRwgEdU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/posts/6386d3c7abb583678ae620e1",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts",
+						"6386d3c7abb583678ae620e1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ROUTE 11: all posts of a registered user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mzg2NTE0YmUxOWNmZTI5OTlmNDE1ODMiLCJpYXQiOjE2Njk3OTAzNTl9.pD4wTasACHDiUFgmAnBJslxwk5AldRiNKekhVJ5hOCQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hardik-backendreuniontask.onrender.com/api/all_posts/",
+					"protocol": "https",
+					"host": [
+						"hardik-backendreuniontask",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"all_posts",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
