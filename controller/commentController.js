@@ -36,7 +36,7 @@ module.exports.createNewComment = async function (req, res) {
         post.save();
 
         // send success response
-        res.json({ success: true, message: "commented recorded successfully" });
+        res.json({ success: true, message: "commented recorded successfully", commentId });
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: "Internal Server Error" });
