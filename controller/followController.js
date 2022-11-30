@@ -10,12 +10,12 @@ module.exports.followUserById = async function (req, res) {
         const userToBeFollowed = await userModel.findById(userToBeFollowedId);
     
         if (!userToBeFollowed) {
-            return res.status(404).json({ message: "invalid operation - user not found" });
+            return res.status(404).json({ success: false, message: "invalid operation - user not found" });
         }
         if (!userToBeFollowed.followers.includes(loggedInUserId)) {
             userToBeFollowed.followers.push(loggedInUserId);
         } else {
-            return res.status(400).json({ message: "user already been followed." });
+            return res.status(400).json({ success: false, message: "user already been followed." });
         }
         userToBeFollowed.save();
 
@@ -23,12 +23,12 @@ module.exports.followUserById = async function (req, res) {
         const userLoggedIn = await userModel.findById(loggedInUserId);
 
         if (!userLoggedIn) {
-            return res.status(404).json({ message: "invalid operation - user not found" });
+            return res.status(404).json({ success: false, message: "invalid operation - user not found" });
         }
         if (!userLoggedIn.following.includes(userToBeFollowedId)) {
             userLoggedIn.following.push(userToBeFollowedId);
         } else {
-            return res.status(400).json({ message: "user already been followed." });
+            return res.status(400).json({ success: false, message: "user already been followed." });
         }
         userLoggedIn.save();
 

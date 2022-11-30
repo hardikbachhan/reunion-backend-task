@@ -10,12 +10,12 @@ module.exports.unFollowUserById = async function (req, res) {
         const userToBeFollowed = await userModel.findById(userToBeFollowedId);
     
         if (!userToBeFollowed) {
-            return res.status(404).json({ message: "invalid operation - user not found" });
+            return res.status(404).json({ success: false, message: "invalid operation - user not found" });
         }
         if (userToBeFollowed.followers.includes(loggedInUserId)) {
             userToBeFollowed.followers = userToBeFollowed.followers.filter(userId => userId !== loggedInUserId);
         } else {
-            return res.status(400).json({ message: "first follow user to unfollow" });
+            return res.status(400).json({ success: false, message: "first follow user to unfollow" });
         }
         userToBeFollowed.save();
 
@@ -23,12 +23,12 @@ module.exports.unFollowUserById = async function (req, res) {
         const userLoggedIn = await userModel.findById(loggedInUserId);
 
         if (!userLoggedIn) {
-            return res.status(404).json({ message: "invalid operation - user not found" });
+            return res.status(404).json({ success: false, message: "invalid operation - user not found" });
         }
         if (userLoggedIn.following.includes(userToBeFollowedId)) {
             userLoggedIn.following = userLoggedIn.following.filter(userId => userId !== userToBeFollowedId);
         } else {
-            return res.status(400).json({ message: "first follow user to unfollow" });
+            return res.status(400).json({ success: false, message: "first follow user to unfollow" });
         }
         userLoggedIn.save();
 

@@ -8,13 +8,13 @@ module.exports.authenticateUser = async function (req, res, next) {
         let { email, password } = req.body;
         let user = await userModel.findOne({ email });
         if (!user) {
-            res.status(404).json({ message: "login credentials incorrect" });
+            res.status(404).json({ success: false, message: "login credentials incorrect" });
             return;
         }
         // compare password send in req to password saved in db
         let isPasswordMatching = await bcrypt.compare(password, user.password);
         if (!isPasswordMatching) {
-            res.status(404).json({ message: "login credentials incorrect" });
+            res.status(404).json({ success: false, message: "login credentials incorrect" });
             return;
         }
         // add user id of mongodb object to req object

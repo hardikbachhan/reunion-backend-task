@@ -10,13 +10,13 @@ module.exports.verifyUserByJWT = function (req, res, next) {
             const token = req.headers.authorization.split(" ")[1];
             jwt.verify(token, JWT_SECRET, function(error, decoded) {
                 if (error) {
-                    return res.json({ message: "user not registered" });
+                    return res.json({ success: false, message: "user not registered" });
                 }
                 req.loggedInUserId = decoded.userId;
                 next();
             });
         } else {
-            res.status(403).json({ message: "invalid operation" });
+            res.status(403).json({ success: false, message: "invalid operation" });
             return;
         }
     } catch (error) {
