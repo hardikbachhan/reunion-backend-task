@@ -11,6 +11,11 @@ app.use(express.json())
 
 // router for user authentication
 const authRouter = require("./routers/authRouter");
+
+// router to get user details
+const userRouter = require("./routers/userRouter");
+
+// router for user actions
 const followRouter = require("./routers/followRouter");
 const unFollowRouter = require("./routers/unFollowRouter")
 
@@ -20,6 +25,9 @@ app.use("/api/authenticate", authRouter)
 // user actions
 app.use("/api/follow", followRouter);
 app.use("/api/unfollow", unFollowRouter);
+
+// get user details
+app.use("/api/user", userRouter);
 
 
 // use port 3000 unless there exists a preconfigured port
