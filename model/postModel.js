@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const userModel = require("./userModel");
 
-// user schema
+// post schema
 const postSchema = mongoose.Schema(
     {
         userId: {

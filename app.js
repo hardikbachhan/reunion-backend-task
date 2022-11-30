@@ -28,6 +28,9 @@ const postLikeRouter = require("./routers/postLikeRouter");
 // router for unliking a post
 const postUnlikeRouter = require("./routers/postUnlikeRouter");
 
+// router for adding a comment to a post
+const commentRouter = require("./routers/commentRouter");
+
 // user authentication
 app.use("/api/authenticate", authRouter);
 
@@ -44,6 +47,7 @@ app.use("/api/posts", postRouter);
 // post operations
 app.use("/api/like", postLikeRouter);
 app.use("/api/unlike", postUnlikeRouter);
+app.use("/api/comment", commentRouter);
 
 // use port 3000 unless there exists a preconfigured port
 const port = process.env.PORT || 3000;
