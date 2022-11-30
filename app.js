@@ -3,11 +3,11 @@ const connectToMongo = require("./db");
 connectToMongo();
 
 // initializing express app
-const express = require('express');
+const express = require("express");
 const app = express();
 
 // to read req.body in json
-app.use(express.json())
+app.use(express.json());
 
 // router for user authentication
 const authRouter = require("./routers/authRouter");
@@ -17,10 +17,13 @@ const userRouter = require("./routers/userRouter");
 
 // router for user actions
 const followRouter = require("./routers/followRouter");
-const unFollowRouter = require("./routers/unFollowRouter")
+const unFollowRouter = require("./routers/unFollowRouter");
+
+// router for CRUD on posts
+const postRouter = require("./routers/postRouter");
 
 // user authentication
-app.use("/api/authenticate", authRouter)
+app.use("/api/authenticate", authRouter);
 
 // user actions
 app.use("/api/follow", followRouter);
@@ -29,14 +32,16 @@ app.use("/api/unfollow", unFollowRouter);
 // get user details
 app.use("/api/user", userRouter);
 
+// CRUD operations on post
+app.use("/api/posts", postRouter);
 
 // use port 3000 unless there exists a preconfigured port
 const port = process.env.PORT || 3000;
 // for testing purpose
 if (require.main === module) {
-  app.listen(port, () => {
-    console.log(`Social Media app listening on port ${port}!`);
-  });
+    app.listen(port, () => {
+        console.log(`Social Media app listening on port ${port}!`);
+    });
 }
 
 module.exports = app;
