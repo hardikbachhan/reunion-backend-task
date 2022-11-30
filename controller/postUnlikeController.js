@@ -1,6 +1,6 @@
 const postModel = require("../model/postModel");
 
-module.exports.likePost = async function (req, res) {
+module.exports.unlikePost = async function (req, res) {
     try {
         // retrieve loggedin user id from req obj.
         const loggedInUserId = req.loggedInUserId;
@@ -17,18 +17,20 @@ module.exports.likePost = async function (req, res) {
         }
 
         // check if user exists in likes array in post
-        if (post.likes.includes(loggedInUserId)) {
+        console.log(post);
+        if (!(post.likes.includes(loggedInUserId))) {
             return res
-                .status(409)
-                .json({ success: false, message: "post already liked" });
+                .status(400)
+                .json({ success: false, message: "cannot unlike a post which is not liked" });
         }
 
-        // add loggedin user id to likes array of post
-        post.likes.push(loggedInUserId);
+        // filter loggedin user id from likes array in post
+        const newLikes = post.likes.filter(userId => userId !== loggedInUserId);
+        post.likes = newLikes;
         post.save();
 
         // send success response
-        res.json({ success: true, message: "post liked successfully" });
+        res.json({ success: true, message: "post unliked successfully" });
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: "Internal Server Error" });
