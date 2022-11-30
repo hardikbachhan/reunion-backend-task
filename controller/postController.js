@@ -60,3 +60,32 @@ module.exports.deletePost = async function (req, res) {
         res.status(500).json({ message: "Internal Server Error" });
     }
 };
+
+module.exports.getPost = async function (req, res) {
+    try {
+        // retrieve post id from params
+        const postId = req.params.id;
+        
+        // check if post already exists
+        const post = await postModel.findById(postId);
+        if (!post) {
+            return res
+                .status(404)
+                .json({ success: false, message: "post not found" });
+        }
+
+        // create post object to sent as response
+        const postObj = {
+            title: post.title,
+            description: post.description,
+            numLikes: post.likes.length,
+            comments: post.comments.length,
+        }
+
+        // send success response
+        res.json({ success: true, postObj });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+};
